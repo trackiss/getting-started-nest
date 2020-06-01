@@ -89,7 +89,7 @@ NestJS では、TypeScript のデコレーターという機能を使って、�
 ### TypeORM のサポート
 
 データベースのテーブル構成とプログラミングにおけるオブジェクトとを相互にマッピングするミドルウェアを ORM (object-relational mapper) という。  
-Node.js では評判のよい ORM である [TypeORM](https://typeorm.io/) をサポートしており、Web 開発でよく使用される NoSQL の一種である MongoDB だけでなく、MySQL や PostgreSQL などの RDB を使用することもできる。
+Node.js の同種の ORM の中でも評判のよい [TypeORM](https://typeorm.io/) をサポートしており、Web 開発でよく使用される NoSQL の一種である MongoDB だけでなく、MySQL や PostgreSQL などの RDB を使用することもできる。
 
 ### Passport のサポート
 
