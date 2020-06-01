@@ -1,25 +1,32 @@
 # NestJS を始めよう
 
+---
+
 ## [NestJS](https://nestjs.com/) ってなに？
 
-[TypeScript](https://www.typescriptlang.org/) で書かれた [Node.js](https://nodejs.org/ja/) 向けのバックエンド フレームワーク。
+TypeScript で書かれた Node.js 向けのバックエンド フレームワーク。
 
-## そもそも TypeScript とは？
+---
+
+## そもそも [TypeScript](https://www.typescriptlang.org/) とは？
 
 JavaScript のスーパーセット (上位互換)。Microsoft 製。最終的に JavaScript へ変換される。
 
 JavaScript は構文が単純なうえ、ブラウザーさえあればどんな環境でも動作するため、Web 2.0 の登場とともに広く使われた。しかし、動的型付けであることなどを筆頭に、バグを生む温床となりやすい仕様が数多く存在している。  
 そうした仕様を改善し、より堅牢でメンテナンス性の高い言語を求めて作られたのが TypeScript である。
 
-## Node.js とは？
+---
 
-JavaScript はもともとブラウザー上で動作するクライアントサイドの言語である。  
-したがって、非常に単純な処理を行わせるためのスクリプト言語として使われることが多かったが、次第に普通の言語と同じように使用できるようにしたいという考え方が出てきた。
+## [Node.js](https://nodejs.org/ja/) とは？
+
+JavaScript はもともとブラウザー上で動作するクライアントサイドの言語である。だが、次第に普通の言語と同じように使用できるようにしたいという考え方が出てきた。
 
 そこで、Chromium (Google Chrome の派生元) に搭載されていた超高速な JavaScript エンジンである V8 Engine をベースに、コンピューター上で動作させられるよう拡張したものが Node.js である。  
 軽量なスクリプトとしても使われるほか、サーバーサイドの環境としても利用される。
 
 ごく最近になって Node.js の後継として開発された [Deno](https://deno.land/) がリリースされたが、完全な移行にはまだしばらく時間がかかると思われる。
+
+---
 
 ## NestJS があるとなにが嬉しいのか？
 
@@ -33,11 +40,9 @@ Express.js などの従来のフレームワークでも TypeScript をサポー
 
 ### 明確で堅牢なアーキテクチャー
 
-NestJS は、Repository (無理に導入する必要はないが推奨)、Service、Controller と、これらを管理する Module によって構成される。
+NestJS は、**Repository** (無理に導入する必要はないが推奨)、**Service**、**Controller** と、これらを管理する **Module** によって構成される。
 
 軽く各モジュールの説明をしておく。
-
-<br>
 
 #### Repository
 
@@ -74,7 +79,7 @@ DB <-依存-- Repository --実装-> RepositoryInterface <-依存-- Service --実
 Repository、Service、Controller 間は Interface を使用して契約に依存するように設計する。
 
 ![概念図](img/nest-class.png)  
-(これは MS ペイントで書いた概念図)
+(↑これは MS ペイントで書いた概念図。さらにわかりやすくなったね)
 
 ### 統合されたバリデーション
 
@@ -105,5 +110,85 @@ NestJS では、Controller とルーティングを統合している。
 
 API ドキュメントを自動生成するだけでなく、Swagger UI と連携して API テストを容易に行えるしくみになっている。
 
-etc。  
-ほかにもいろいろあるが、とにかく先進的で洗練されたフレームワークである。
+<br>
+
+etc.
+
+---
+
+## 環境構築
+
+環境構築のハウツー。すでにインストールしてあるのなら適宜飛ばしてもらってかまわない。まったくゼロの状態からだとそこそこ大変なので覚悟しておこう。  
+ほかのやり方もいくらでもあるので、基本的に好きなようにしてもらってかまわないが、バージョンはそろえること。
+
+なお、全体的に Windows での操作を想定している。それ以外の OS を使用している場合は適切な方法を選択すること。
+
+### Nodist のインストール
+
+Node.js にはさまざまなバージョンがあり、それらを共存させるためには [Nodist](https://github.com/nullivex/nodist) というツールを使用する。  
+「自分はひとつのバージョンしか使わない」という絶対の自信がある場合は [Node.js のインストーラー](https://nodejs.org/ja/) を使うなり Chocolatey を使ってインストールするなりしてもらってかまわない。
+
+[ここから](https://github.com/nullivex/nodist/releases/latest) インストーラーをダウンロードし、インストールする。  
+インストール後、PowerShell から次のコマンドを実行する。
+
+```bat
+node -v
+```
+
+バージョンが表示されれば、インストールに成功している。
+
+...ちなみに、Windows 10 標準の PowerShell は非常に古いため、この機会に最新のバージョンへ更新しておくと幸せになれる。最新の安定版は [ここから](https://github.com/PowerShell/powershell/releases/latest) ダウンロードできる。  
+[Microsoft のデベロッパーによるツイート](https://twitter.com/richturn_ms/status/1265155820083240962) からもわかるように、コマンドプロンプト (cmd.exe) は必要のないかぎり使用しないこと。
+
+### Node.js のインストール
+
+次に、Nodist を使って Node.js をインストールする。
+2020年6月現在、最新の LTS 版である **12.17.0** をインストールしよう。
+
+PowerShell から次のコマンドを実行する。
+
+```bat
+nodist + 12.17.0
+```
+
+インストール後、次のコマンドを実行する。
+
+```bat
+node -v
+```
+
+バージョンが表示されれば、インストールに成功している。
+
+### npm のアップデート
+
+次に npm をアップデートしておく。  
+npm (node package manager) というのは、Node.js のパッケージ (ライブラリのようなもの) を管理するツールのことである。
+
+PowerShell から次のコマンドを実行する。
+
+```bat
+npm install -g npm
+```
+
+npm じゃなくて [yarn](https://classic.yarnpkg.com/ja/) がいい！  
+という人もいるかもしれないが、最近の npm は yarn 並に速度が向上してきているうえ、NestJS のドキュメントではすべて npm コマンドになっているので、ここは統一しておいたほうがいいだろう。
+
+### Nest CLI のインストール
+
+次に、NestJS 独自のコマンドライン ツールである [Nest CLI](https://github.com/nestjs/nest-cli) をインストールする。  
+これ以降、Nest に関わるコマンドはこの Nest CLI から実行することになる。
+
+PowerShell から次のコマンドを実行する。  
+`npm install -g xxx` は、`xxx` をグローバルにインストールするよ、という意味。対して、各ローカル プロジェクトだけにインストールするときは `-g` オプションをなくす。
+
+```bat
+npm install -g @nestjs/cli
+```
+
+インストールが完了したら、PowerShell から次のコマンドを実行して確認しよう。
+
+```bat
+nest -v
+```
+
+---
