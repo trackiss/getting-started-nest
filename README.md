@@ -164,10 +164,11 @@ node -v
 次に npm をアップデートしておく。  
 npm (node package manager) というのは、Node.js のパッケージ (ライブラリのようなもの) を管理するツールのことである。
 
-PowerShell から次のコマンドを実行する。
+PowerShell から次のコマンドを実行する。  
+`npm install -g xxx` は、`xxx` をグローバルにインストールするよ、という意味。対して、各プロジェクト内だけ (ローカル) にインストールするときは `-g` オプションをなくす。
 
 ```bat
-npm install -g npm
+npm i -g npm
 ```
 
 npm じゃなくて [yarn](https://classic.yarnpkg.com/ja/) がいい！  
@@ -179,10 +180,9 @@ npm じゃなくて [yarn](https://classic.yarnpkg.com/ja/) がいい！
 これ以降、Nest に関わるコマンドはこの Nest CLI から実行することになる。
 
 PowerShell から次のコマンドを実行する。  
-`npm install -g xxx` は、`xxx` をグローバルにインストールするよ、という意味。対して、各ローカル プロジェクトだけにインストールするときは `-g` オプションをなくす。
 
 ```bat
-npm install -g @nestjs/cli
+npm i -g @nestjs/cli
 ```
 
 インストールが完了したら、PowerShell から次のコマンドを実行して確認しよう。
