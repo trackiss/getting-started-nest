@@ -72,5 +72,5 @@ DB <-依存-- Repository --実装-> RepositoryInterface <-依存-- Service --実
 
 Repository、Service、Controller 間は Interface を使用して契約に依存するように設計する。
 
-![概念図](/img/nest-class.png)  
+![概念図](img/nest-class.png)  
 (これは MS ペイントで書いた概念図)
