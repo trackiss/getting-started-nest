@@ -47,7 +47,7 @@ NestJS は、**Repository** (無理に導入する必要はないが推奨)、**
 #### Repository
 
 データベースの操作を提供するモジュールである。  
-Repository は、ビジネス ロジック (要件を実現させるための本質的なロジック) とデータベース アクセスを分離するためによく採られる手法であるリポジトリ パターンにおける概念のひとつ。
+Repository は、ビジネス ロジック (要件を実現させるための本質的なロジック) とデータベース アクセスを分離するためによく採られる手法であるリポジトリー パターンにおける概念のひとつ。
 
 ビジネス ロジックが直接データベースで依存してしまうと、本来の関心事ではないロジックが混ざってしまううえ、別のデータベースへ移行する際に問題が生じやすい。  
 そこで、中間層として Repository を実装し、ビジネス ロジックとデータベースを分離させる。
@@ -131,7 +131,7 @@ Node.js にはさまざまなバージョンがあり、それらを共存させ
 [ここから](https://github.com/nullivex/nodist/releases/latest) インストーラーをダウンロードし、インストールする。  
 インストール後、PowerShell から次のコマンドを実行する。
 
-```bat
+```pwsh
 node -v
 ```
 
@@ -147,13 +147,13 @@ node -v
 
 PowerShell から次のコマンドを実行する。
 
-```bat
+```pwsh
 nodist + 12.17.0
 ```
 
 インストール後、次のコマンドを実行する。
 
-```bat
+```pwsh
 node -v
 ```
 
@@ -167,7 +167,7 @@ npm (node package manager) というのは、Node.js のパッケージ (ライ�
 PowerShell から次のコマンドを実行する。  
 `npm install -g xxx` は、`xxx` をグローバルにインストールするよ、という意味。対して、各プロジェクト内だけ (ローカル) にインストールするときは `-g` オプションをなくす。
 
-```bat
+```pwsh
 npm i -g npm
 ```
 
@@ -181,14 +181,50 @@ npm じゃなくて [yarn](https://classic.yarnpkg.com/ja/) がいい！
 
 PowerShell から次のコマンドを実行する。  
 
-```bat
+```pwsh
 npm i -g @nestjs/cli
 ```
 
 インストールが完了したら、PowerShell から次のコマンドを実行して確認しよう。
 
-```bat
+```pwsh
 nest -v
 ```
+
+---
+
+## ひな形の作成
+
+いよいよ、NestJS を使って Hello World! をしてみる。
+
+プロジェクトを作成するフォルダーへ移動し (つまり、プロジェクト ディレクトリーのひとつ上のディレクトリー)、PowerShell から次のコマンドを実行する。
+
+```pwsh
+nest new nest-sample
+```
+
+`nest new xxx` で `xxx` というプロジェクトが作成される。プロジェクト名は任意に決めてよい。  
+すると、次のように、どのパッケージ マネージャーを使用するか訊かれる。チュートリアル的には npm を選んでほしいところだが、あなたが真に ❤️ なほうを選ぼう。
+
+```
+? Which package manager would you ❤️  to use? (Use arrow keys)
+> npm
+  yarn
+```
+
+しばらく待つと (初回はそこそこ速いマシンでもそこそこ時間がかかる)、数多くのファイルが作成される。
+
+細かい説明は抜きにして、PowerShell から次のコマンドを実行してみよう。  
+`cd xxx` についての説明はいらないと思う。`npm tun start` でアプリケーションがビルドされ、サーバーが起動する。
+
+```pwsh
+cd nest-sample
+npm run start
+```
+
+少し待って、` [NestApplication] Nest application successfully started` と表示されれば準備完了。  
+途中で “Windows セキュリティの重要な警告” が表示されたら、“アクセスを許可” を選択する。
+
+さて、あとはお使いのブラウザーで `http://localhost:3000/` にアクセスしてみれば、`Hello World!` が表示されるはずだ。
 
 ---
